@@ -1,0 +1,19 @@
+@import url('https://googleapis.com');
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+}
+
+@import "tailwindcss";
+
+
+@plugin "flyonui";
+@import "flyonui/variants.css";
+@plugin "@iconify/tailwind4";
+
+
+/* Required to let Tailwind look inside FlyonUI scripts for interactive UI elements */
+@source "../node_modules/flyonui/dist/index.js";
+
+
+/* @source "../node_modules/flyonui/dist/accordion.js"; */
+
