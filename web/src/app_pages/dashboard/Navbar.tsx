@@ -1,8 +1,8 @@
 import { NavLink, Link } from "react-router"
 import { AppLogo } from "../../components/svgs/AppLogo"
-import { NavbarIndicatorMessage } from "../../components/navbar components/NavbarIndicatorMessage"
-import { NavbarAvatarProgile } from "../../components/navbar components/NavbarAvatarProfile"
-import { NavbarIndicatorSettings } from "../../components/navbar components/NavbarIndicatorSettings"
+import { NavbarIndicatorMessage } from "../../components/navbar-components/NavbarIndicatorMessage"
+import { NavbarAvatarProgile } from "../../components/navbar-components/NavbarAvatarProfile"
+// import { NavbarIndicatorSettings } from "../../components/navbar components/NavbarIndicatorSettings"
 
 
 
@@ -13,9 +13,9 @@ export const Navbar = () => {
 
     const navLinks = [
       {id: linkId++,  name : "Dashboard", link : "/dashboard"},
-      {id: linkId++,  name : "History", link : "#"},
-      {id: linkId++, name: "Messages", link: "#"},
-      {id: linkId++, name: "Contact", link : "#"}
+      {id: linkId++,  name : "History", link : "/dashboard/history"},
+      {id: linkId++, name: "Messages", link: "/dashboard/messages"},
+      {id: linkId++, name: "Send", link : "/dashboard/send"}
 
     ]
     return (
@@ -31,22 +31,28 @@ export const Navbar = () => {
         <div className="navbar-center max-md:hidden">
           <ul className="menu menu-horizontal p-0 space-x-4 font-medium font-poppins">
             
-            <li className="rounded px-2 bg-primary text-white">
-              <Link to={"/dashboard"}> Home </Link>
+            <li className="rounded-full">
+              <Link className={`bg-primary hover:text-accent text-white rounded-full`} to={"/dashboard"}> Dashboard </Link>
             </li>
 
-            <li className="bg-secondary-content rounded text-primary hover:text-secondary">
-              <Link className="hover:text-neutral" to={"/dashboard/messages"}> Messages </Link>
+            <li className="bg-secondary-content rounded-full text-primary ">
+              <Link className="hover:text-neutral  rounded-full " to={"/dashboard/send"}> Send </Link>
             </li>
 
-            <li className="bg-secondary-content rounded text-primary ">
-              <Link className="hover:text-neutral" to={"/dashboard/history"}> History </Link>
+            <li className="bg-secondary-content rounded-full text-primary hover:text-secondary">
+              <Link className="hover:text-neutral rounded-full" to={"/dashboard/messages"}> Messages </Link>
             </li>
+
+            <li className="bg-secondary-content rounded-full text-primary ">
+              <Link className="hover:text-neutral rounded-full" to={"/dashboard/history"}> History </Link>
+            </li>
+
+
 
             {/* {
               navLinks.map((link) => (
-                <li className="rounded-full" key={link.id}> 
-                    <NavLink to={link.link} className={ ({isActive})  =>  `transition-all  ${isActive} ? "text-white bg-black" : "text-black " ` }> {link.name} </NavLink>
+                <li className="rounded-full px-2 " key={link.id}> 
+                    <NavLink to={link.link} className={ ({isActive})  =>  `transition-all  ${isActive}  ? "bg-secondary-content text-white" : " bg-primary text-white hover:text-accent text-primary" rounded-full` }> {link.name} </NavLink>
                 </li>
               ))
             } */}
@@ -76,7 +82,7 @@ export const Navbar = () => {
 
           {/*Indicators && Avatars*/}
 
-          <NavbarIndicatorSettings />
+          {/* <NavbarIndicatorSettings linkTo=""/> */}
           
 
           <NavbarIndicatorMessage />

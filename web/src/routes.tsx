@@ -6,6 +6,7 @@ import { DashboardRootLayout } from "./app_pages/dashboard/RootDashboardLayout";
 import { DashboardHome } from "./app_pages/dashboard/pages/DashboardHome";
 import { DashboardMessages } from "./app_pages/dashboard/pages/DashboardMessage";
 import { TransactionsHistory } from "./app_pages/dashboard/pages/TransactionsHistory";
+import { Transaction } from "./app_pages/dashboard/pages/Transaction";
 
 
 export const routes = createBrowserRouter([
@@ -37,6 +38,10 @@ export const routes = createBrowserRouter([
           {
             path : "history",
             Component : TransactionsHistory
+          },
+          {
+            path : "send",
+            Component : Transaction 
           }
 
 
