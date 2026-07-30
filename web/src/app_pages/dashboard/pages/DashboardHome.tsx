@@ -6,10 +6,27 @@ import { StatItem } from "../../../components/dashboard-components/StatItem"
 import { ServiceLogo } from "../../../components/dashboard-components/ServiceLogo"
 import { SegmentedProgress } from "../../../components/dashboard-components/SegmentedProgress"
 import { DateFormat } from "../../../components/dashboard-components/DateFormat"
-import { DashboardTable } from "../../../components/dashboard-components/static-components/DashboardTable"
+import { CoinStat } from "../../../components/dashboard-components/Coin"
+
+
+interface CoinStatProp {
+  coinName: string;  // e.g., "USD"
+  imgSrc: string;     
+  currentPrice: string;       // e.g., "$22,678.00"
+  stateText: string;     // e.g., "Limit is $10k a month"
+  isActive: boolean;     // Active or Inactive state
+}
 
 
 export const DashboardHome = () => {
+
+    const coins = [
+        {coinName : "BTC", imgSrc : "/coins/bitcoin.png", currentPrice : "$77,788.00", stateText : "Up 2.5% since last week", isActive: true},
+        {coinName : "ETH", imgSrc : "/coins/eth.png", currentPrice : "$67,788.00", stateText : "Down 3.5% since last week", isActive: false},
+        {coinName : "SOL", imgSrc : "/coins/sol.png", currentPrice : "$37,788.00", stateText : "Up 1.5% since last week", isActive: true},
+        {coinName : "USDT", imgSrc : "/coins/usdt.png", currentPrice : "$27,788.00", stateText : "Down 1.5% since last week", isActive: false}
+
+    ]
 
     return(
         <div className="space-y-4">
@@ -85,11 +102,18 @@ export const DashboardHome = () => {
                     <div className="mt-2">
                         <span className="text-xs text-primary">Top services</span>
                         <div className="flex flex-wrap items-center rounded-2xl p-4 justify-between gap-8 md:gap-12 outline">
-                            <StatItem label="Paypal" value="$28.3k" borderColorClass="border-emerald-600"/>
+                            <StatItem label="Venmo" value="$38.5k" borderColorClass="border-blue-400" > 
+                                <ServiceLogo divStyle="avatar" imgStyle="w-12" altAttributeValue="paypal" imgSrc="/services/paypal.png"/>
+                            </StatItem>
 
-                            <StatItem label="Venmo" value="$38.5k" borderColorClass="border-lime-400" />
+                            <StatItem label="Venmo" value="$38.5k" borderColorClass="border-lime-400" > 
+                                <ServiceLogo divStyle="avatar" imgStyle="w-12" altAttributeValue="cashpp logo" imgSrc="/services/cashapp.png"/>
+                            </StatItem>
 
-                            <StatItem label="Zelle" value="$34.4k" borderColorClass="border-teal-400" />
+                            <StatItem label="Venmo" value="$38.5k" borderColorClass="border-teal-400" > 
+                                <ServiceLogo divStyle="avatar" imgStyle="w-12" altAttributeValue="Venmo logo" imgSrc="/services/venmo.png"/>
+                            </StatItem>
+
                         </div>
                     </div>
 
@@ -106,7 +130,7 @@ export const DashboardHome = () => {
 
                         <div className="mt-6 mb-6 space-x-2 flex items-center gap-2 ">
                             <StatBadge iconClass="icon-[tabler--arrow-up-right]">  
-                                <ServiceLogo imgSrc="/images/paypal.png" imgStyle="w-12" altAttributeValue="PayPal"  />
+                                <ServiceLogo imgSrc="/services/paypal.png" imgStyle="w-12" altAttributeValue="PayPal"  />
                                 {/* <span className="text-error text-sm tracking-wide text-center"> -$15,500</span> */}
                             </StatBadge>
 
@@ -136,9 +160,11 @@ export const DashboardHome = () => {
             </div>
 
             {/*table*/}
-            <div className="grid grid-cols-3 gap-4 mt-4">
-                <div className="col-span-2 shadow-md outline-1 rounded-2xl">
-                    <DashboardTable />
+            <div className="grid grid-cols-3 gap-4 mt-2">
+                <div className="col-span-2 grid sm:grid-cols-2 p-1 gap-3 outline-1 rounded-2xl">
+                    { coins.map((coin) => (
+                        <CoinStat key={coin.coinName} coin={coin} />
+                    )) }
                 </div>
 
                 {/*largest transfer*/}
