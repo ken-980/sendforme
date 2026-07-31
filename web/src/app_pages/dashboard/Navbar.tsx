@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router"
+import { NavLink } from "react-router"
 import { AppLogo } from "../../components/svgs/AppLogo"
 import { NavbarIndicatorMessage } from "../../components/navbar-components/NavbarIndicatorMessage"
 import { NavbarAvatarProgile } from "../../components/navbar-components/NavbarAvatarProfile"
@@ -8,19 +8,23 @@ import { NavbarAvatarProgile } from "../../components/navbar-components/NavbarAv
 
 export const Navbar = () => {
 
-    {/*replace with actual link */}
-    let linkId = 1;
 
     const navLinks = [
-      {id: linkId++,  name : "Dashboard", link : "/dashboard"},
-      {id: linkId++,  name : "History", link : "/dashboard/history"},
-      {id: linkId++, name: "Messages", link: "/dashboard/messages"},
-      {id: linkId++, name: "Send", link : "/dashboard/send"}
+      {name : "Dashboard", link : "/dashboard"},
+      {name: "Send", link : "/dashboard/send"},
+      {name : "History", link : "/dashboard/history"},
+      {name: "Messages", link: "/dashboard/messages"},
 
     ]
+    const nav = navLinks.map((link) => (
+        <li className="rounded-full px-2 " key={link.link}> 
+            <NavLink end={ link.link == "/dashboard" } to={link.link} className={({isActive}) => `transition-all rounded-full  ${isActive ? "bg-primary text-white hover:text-primary" : "bg-secondary-content hover:text-primary text-primary"}  ` }> {link.name} </NavLink>
+          </li>
+    ))
+
     return (
 
-      <nav className="navbar rounded-box border flex w-full items-center justify-between gap-2 bg-gray-100 shadow-base-300/20 shadow-sm">
+      <nav className="navbar rounded-box border flex w-full items-center justify-between gap-2 bg-gray-100 shadow-base-300/20 outline shadow-sm">
 
         {/* Log */}
         <div className="navbar-start max-md:w-1/4">
@@ -31,7 +35,7 @@ export const Navbar = () => {
         <div className="navbar-center max-md:hidden">
           <ul className="menu menu-horizontal p-0 space-x-4 font-medium font-poppins">
             
-            <li className="rounded-full">
+            {/* <li className="rounded-full">
               <Link className={`bg-primary hover:text-accent text-white rounded-full`} to={"/dashboard"}> Dashboard </Link>
             </li>
 
@@ -45,17 +49,11 @@ export const Navbar = () => {
 
             <li className="bg-secondary-content rounded-full text-primary ">
               <Link className="hover:text-neutral rounded-full" to={"/dashboard/history"}> History </Link>
-            </li>
+            </li> */}
 
 
 
-            {/* {
-              navLinks.map((link) => (
-                <li className="rounded-full px-2 " key={link.id}> 
-                    <NavLink to={link.link} className={ ({isActive})  =>  `transition-all  ${isActive}  ? "bg-secondary-content text-white" : " bg-primary text-white hover:text-accent text-primary" rounded-full` }> {link.name} </NavLink>
-                </li>
-              ))
-            } */}
+            { nav }
    
           </ul>
         </div>

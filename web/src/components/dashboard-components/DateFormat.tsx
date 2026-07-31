@@ -12,7 +12,7 @@ export const DateFormat = ({monthFormat = "short", yearFormat = "numeric", class
     return (
         <>
             <span className={className}>
-                { (new Intl.DateTimeFormat("en-US", { month: monthFormat, year: yearFormat } ).format(format)) }
+                { (new Intl.DateTimeFormat("en-US", { day: "numeric", month: monthFormat, year: yearFormat } ).format(format)) }
             </span>
         </>
     )

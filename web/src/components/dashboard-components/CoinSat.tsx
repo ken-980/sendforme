@@ -15,7 +15,7 @@ export const CoinStat = ({ coin }: CoinCardProps) => {
   const { coinName, imgSrc, currentPrice, stateText, isActive } = coin;
 
   return (
-    <div className="card bg-gray-100 border border-slate-100/80 rounded-2xl p-2 shadow-md font-poppins relative">
+    <div className="card bg-gray-100 border border-slate-100/80 rounded-2xl py-1 px-4 shadow-md font-poppins relative">
       
       {/* Header: Flag, Code and Options Menu */}
       <div className="flex items-center justify-between mb-2">

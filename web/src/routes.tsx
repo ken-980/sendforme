@@ -6,7 +6,7 @@ import { DashboardRootLayout } from "./app_pages/dashboard/RootDashboardLayout";
 import { DashboardHome } from "./app_pages/dashboard/pages/DashboardHome";
 import { DashboardMessages } from "./app_pages/dashboard/pages/DashboardMessage";
 import { TransactionsHistory } from "./app_pages/dashboard/pages/TransactionsHistory";
-import { Transaction } from "./app_pages/dashboard/pages/Transaction";
+import { Send } from "./app_pages/dashboard/pages/Send";
 
 
 export const routes = createBrowserRouter([
@@ -41,7 +41,7 @@ export const routes = createBrowserRouter([
           },
           {
             path : "send",
-            Component : Transaction 
+            Component : Send 
           }
 
 

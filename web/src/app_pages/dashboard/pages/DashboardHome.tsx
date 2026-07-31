@@ -1,21 +1,15 @@
 import { Link } from "react-router"
 import { Button } from "../../../components/dashboard-components/Button"
-import { Greeting } from "../../../components/dashboard-components/Greeting"
+import { LargeText } from "../../../components/dashboard-components/LargeText"
 import { StatBadge } from "../../../components/dashboard-components/StatBadge"
 import { StatItem } from "../../../components/dashboard-components/StatItem"
 import { ServiceLogo } from "../../../components/dashboard-components/ServiceLogo"
 import { SegmentedProgress } from "../../../components/dashboard-components/SegmentedProgress"
 import { DateFormat } from "../../../components/dashboard-components/DateFormat"
-import { CoinStat } from "../../../components/dashboard-components/Coin"
+import { CoinStat } from "../../../components/dashboard-components/CoinSat"
 
 
-interface CoinStatProp {
-  coinName: string;  // e.g., "USD"
-  imgSrc: string;     
-  currentPrice: string;       // e.g., "$22,678.00"
-  stateText: string;     // e.g., "Limit is $10k a month"
-  isActive: boolean;     // Active or Inactive state
-}
+
 
 
 export const DashboardHome = () => {
@@ -24,18 +18,20 @@ export const DashboardHome = () => {
         {coinName : "BTC", imgSrc : "/coins/bitcoin.png", currentPrice : "$77,788.00", stateText : "Up 2.5% since last week", isActive: true},
         {coinName : "ETH", imgSrc : "/coins/eth.png", currentPrice : "$67,788.00", stateText : "Down 3.5% since last week", isActive: false},
         {coinName : "SOL", imgSrc : "/coins/sol.png", currentPrice : "$37,788.00", stateText : "Up 1.5% since last week", isActive: true},
-        {coinName : "USDT", imgSrc : "/coins/usdt.png", currentPrice : "$27,788.00", stateText : "Down 1.5% since last week", isActive: false}
-
+        {coinName : "USDT", imgSrc : "/coins/usdt.png", currentPrice : "$27,788.00", stateText : "Down 1.5% since last week", isActive: false},
     ]
 
+     const baseStylesForCard  = "hover:shadow-lg shadow-md outline-1 transition-all rounded-2xl py-4 px-3 font-poppins";
+
+
     return(
-        <div className="space-y-4">
+        <div className="space-y-3">
 
             {/*Greeting and new transaction button*/}
-            <div className="flex justify-between py-2 outline-amber-500">
-                <Greeting greetingText={`Good Afternoon, John!`}/>
+            <div className="flex justify-between py-2">
+                <LargeText textSize="text-3xl" text={`Good Afternoon, John!`}/>
 
-                <Button buttonStyle={`btn btn-neutral font-poppins rounded-full flex bg-primary text-white p-4`} >
+                <Button buttonStyle={`btn btn-neutral font-poppins shadow-sm hover:shadow-lg transition-all rounded-full flex bg-primary text-white p-4`} >
                     <span className="icon-[tabler--plus] size-4" area-hidden="true"> </span>
                     <Link  className="text-center " to={"/dashboard/send"}>
                         <p>New transaction</p> 
@@ -47,7 +43,7 @@ export const DashboardHome = () => {
             <div className="grid grid-cols-3 gap-4">
 
                 {/*card 1*/}
-                <div className="shadow-md outline-1 rounded-2xl py-4 px-3 font-poppins">
+                <div className={` ${baseStylesForCard}`} >
                     <div>
                         <p className="text-primary">My Balance</p>
                     </div>
@@ -74,7 +70,7 @@ export const DashboardHome = () => {
                 </div>
 
                 {/*card 2*/}
-                <div className="shadow-md outline-1 rounded-2xl py-4 px-3 font-poppins">
+                <div className={` ${baseStylesForCard}`}>
                     <div>
                         <p className="text-primary">Amount Sent</p>
                     </div>
@@ -111,7 +107,7 @@ export const DashboardHome = () => {
                             </StatItem>
 
                             <StatItem label="Venmo" value="$38.5k" borderColorClass="border-teal-400" > 
-                                <ServiceLogo divStyle="avatar" imgStyle="w-12" altAttributeValue="Venmo logo" imgSrc="/services/venmo.png"/>
+                                <ServiceLogo divStyle="avatar" imgStyle="w-12" altAttributeValue="Venmo logo" imgSrc="/services/zelle.png"/>
                             </StatItem>
 
                         </div>
@@ -121,7 +117,7 @@ export const DashboardHome = () => {
 
                 {/*card 3*/}
                 <div>
-                    <div className="shadow-md outline-1 rounded-2xl py-4 px-3 font-poppins">
+                    <div className={` ${baseStylesForCard} `}>
                         <div>
                             <h1 className="text-black text-4xl" >$15,000</h1>
                             <h5 className="text-primary text-sm">Last transaction amount</h5>
@@ -146,8 +142,8 @@ export const DashboardHome = () => {
                         </div>
 
                         {/* date and limit*/}
-                        <div className="my-2 flex justify-between" >
-                            <DateFormat className="text-sm text-black" monthFormat="short" yearFormat="numeric"/>
+                        <div className="my-2 flex items-center justify-between" >
+                            <DateFormat className="text-sm text-black" monthFormat="long" yearFormat="numeric"/>
                             
                             <StatBadge iconClass="icon-[tabler--flag-pause]">
                                 <span className="text-slate-600 text-sm">Daily limit</span>
@@ -159,9 +155,9 @@ export const DashboardHome = () => {
                 </div>
             </div>
 
-            {/*table*/}
-            <div className="grid grid-cols-3 gap-4 mt-2">
-                <div className="col-span-2 grid sm:grid-cols-2 p-1 gap-3 outline-1 rounded-2xl">
+            {/*coins card*/}
+            <div className="grid grid-cols-3 gap-4 mt-1 ">
+                <div className={`col-span-2 grid sm:grid-cols-2 gap-2 hover:shadow-lg rounded-2xl outline-1 p-2 overflow-y-auto scrollbar-thin`}>
                     { coins.map((coin) => (
                         <CoinStat key={coin.coinName} coin={coin} />
                     )) }
@@ -169,7 +165,7 @@ export const DashboardHome = () => {
 
                 {/*largest transfer*/}
                 <div>
-                    <div className="shadow-md outline-1 rounded-2xl py-4 px-3 font-poppins">
+                    <div className={` ${baseStylesForCard} `}>
                         <div>
                             <p className="text-primary">Monthly transfer rank</p>
                         </div>

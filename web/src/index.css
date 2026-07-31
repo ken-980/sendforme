@@ -6,7 +6,9 @@
 @import "tailwindcss";
 
 
-@plugin "flyonui";
+@plugin "flyonui" {
+  exclude : rootcolor;
+}
 @import "flyonui/variants.css";
 @plugin "@iconify/tailwind4";
 
