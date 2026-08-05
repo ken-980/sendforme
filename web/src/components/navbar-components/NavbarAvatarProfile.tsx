@@ -1,5 +1,5 @@
 
-export const NavbarAvatarProgile = () => {
+export const NavbarAvatarProfile = () => {
     return (
         <> 
             <div className="dropdown relative inline-flex [--auto-close:inside] [--offset:8] [--placement:bottom-end]">
